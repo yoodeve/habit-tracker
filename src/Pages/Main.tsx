@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import {habitObj} from '../DummyData';
 import {useNavigate} from 'react-router-dom';
-import {PlusCircleOutlined} from '@ant-design/icons';
+import {
+  CheckSquareFilled,
+  CheckSquareOutlined,
+  PlusCircleOutlined,
+} from '@ant-design/icons';
 
 const Main: React.FC = () => {
   const navigate = useNavigate();
@@ -17,16 +21,32 @@ const Main: React.FC = () => {
         <div className="date">0월 0주간</div>
         <div className="test">
           {habitObj.map(({name, week}) => (
-            <>
+            <div className="week-flex-box">
               <div>{name}</div>
-              <div>{week.mon ? '함' : '안함'}</div>
-              <div>{week.tue ? '함' : '안함'}</div>
-              <div>{week.wed ? '함' : '안함'}</div>
-              <div>{week.thu ? '함' : '안함'}</div>
-              <div>{week.fri ? '함' : '안함'}</div>
-              <div>{week.sat ? '함' : '안함'}</div>
-              <div>{week.sun ? '함' : '안함'}</div>
-            </>
+              <div className="week-done">
+                <div>
+                  {week.mon ? <CheckSquareFilled /> : <CheckSquareOutlined />}
+                </div>
+                <div>
+                  {week.tue ? <CheckSquareFilled /> : <CheckSquareOutlined />}
+                </div>
+                <div>
+                  {week.wed ? <CheckSquareFilled /> : <CheckSquareOutlined />}
+                </div>
+                <div>
+                  {week.thu ? <CheckSquareFilled /> : <CheckSquareOutlined />}
+                </div>
+                <div>
+                  {week.fri ? <CheckSquareFilled /> : <CheckSquareOutlined />}
+                </div>
+                <div>
+                  {week.sat ? <CheckSquareFilled /> : <CheckSquareOutlined />}
+                </div>
+                <div>
+                  {week.sun ? <CheckSquareFilled /> : <CheckSquareOutlined />}
+                </div>
+              </div>
+            </div>
           ))}
         </div>
         <div className="add-icon-area">
@@ -43,12 +63,18 @@ export default Main;
 
 const MainContainer = styled.div`
   color: #080211;
+  margin: 30px;
   .name-box {
     font-size: 2rem;
     font-weight: 700;
+    margin: 5px;
   }
   .question {
     font-size: 1.4rem;
+    margin: 5px;
+  }
+  .date {
+    margin: 5px;
   }
   .add-icon-area {
     width: 100%;
@@ -72,5 +98,17 @@ const MainContainer = styled.div`
     background-color: #73bbc9;
     color: #fff;
     cursor: pointer;
+  }
+  .week-flex-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  .week-done {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 5px;
   }
 `;
